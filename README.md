@@ -1,6 +1,6 @@
 # SCARECROW Web Dashboard
 
-A separate React + Vite + TypeScript web dashboard for the existing SCARECROW Supabase project. It does not modify or replace the Expo mobile application.
+A separate React + Vite + TypeScript web dashboard for the existing SCARECROW Supabase project.
 
 ## Requirements
 - Node.js 20+
