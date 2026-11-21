@@ -1,0 +1,253 @@
+
+/* =====================================
+   REGISTERED DEVICE ACTIONS
+===================================== */
+
+.registered-device-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 10px 12px;
+  border: none;
+  border-radius: 10px;
+  transition: background 0.2s ease;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+.registered-device-item:hover {
+  background: #f7f9f2;
+}
+
+.registered-device-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.registered-device-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 11px;
+  flex-shrink: 0;
+}
+
+/* ACTION BUTTONS */
+
+.device-action-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: 34px;
+  padding: 7px 10px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  background: transparent;
+  color: #647467;
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
+}
+
+/* EDIT */
+
+.device-action-btn.edit {
+  color: #456b43;
+}
+
+.device-action-btn.edit:hover {
+  background: #edf5e8;
+  color: #285c31;
+}
+
+/* ARCHIVE */
+
+.device-action-btn.archive {
+  color: #b54747;
+}
+
+.device-action-btn.archive:hover {
+  background: #fdecea;
+  color: #c62828;
+}
+
+/* DISABLED */
+
+.device-action-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* REMOVE BUTTON OUTLINES */
+
+.device-action-btn:focus {
+  outline: none;
+}
+
+.device-action-btn:focus-visible {
+  outline: 2px solid #80a86c;
+  outline-offset: 2px;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 650px) {
+  .registered-device-item {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .registered-device-actions {
+    width: 100%;
+    justify-content: flex-end;
+  }
+}
+
+
+/* =====================================
+   DEVICES SEARCH BAR
+===================================== */
+
+.search-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: min(420px, 75%);
+  min-height: 42px;
+  padding: 0 14px;
+
+  background: #ffffff;
+  border: 1px solid #e3e9df;
+  border-radius: 10px;
+
+  color: #8a988a;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+}
+
+.search-box svg {
+  flex-shrink: 0;
+  color: #8a988a;
+  transition: color 0.2s ease;
+}
+
+.search-box input {
+  flex: 1;
+  min-width: 0;
+  width: 100%;
+  padding: 11px 0;
+
+  border: none;
+  outline: none;
+  box-shadow: none;
+
+  background: transparent;
+  color: #183526;
+  font-family: inherit;
+  font-size: 12px;
+}
+
+.search-box input::placeholder {
+  color: #9aa49a;
+}
+
+.search-box:focus-within {
+  border-color: #80a86c;
+  box-shadow: 0 0 0 3px rgba(128, 168, 108, 0.12);
+}
+
+.search-box:focus-within svg {
+  color: #4f8f3a;
+}
+
+/* Remove browser search decorations */
+
+.search-box input::-webkit-search-decoration,
+.search-box input::-webkit-search-cancel-button,
+.search-box input::-webkit-search-results-button,
+.search-box input::-webkit-search-results-decoration {
+  -webkit-appearance: none;
+}
+
+/* DARK MODE */
+
+:root[data-theme='dark'] .search-box {
+  background: #1b2b21;
+  border-color: #3a5040;
+  color: #b8c9ba;
+}
+
+:root[data-theme='dark'] .search-box input {
+  color: #edf4e9;
+}
+
+:root[data-theme='dark'] .search-box input::placeholder {
+  color: #91a394;
+}
+
+:root[data-theme='dark'] .search-box svg {
+  color: #91a394;
+}
+
+:root[data-theme='dark'] .search-box:focus-within {
+  border-color: #668b68;
+  box-shadow: 0 0 0 3px rgba(102, 139, 104, 0.15);
+}
+
+:root[data-theme='dark'] .search-box:focus-within svg {
+  color: #c5dda9;
+}
+
+/* MOBILE */
+
+@media (max-width: 760px) {
+  .search-box {
+    width: 100%;
+  }
+}
+
+/* =====================================
+   DEVICE ROW - REMOVE INNER BOX
+===================================== */
+
+.registered-device-content {
+  flex: 1;
+  min-width: 0;
+  padding: 0;
+  border: none !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.registered-device-content .device-row {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  width: 100%;
+  padding: 10px 0;
+  border: none !important;
+  outline: none !important;
+  border-radius: 0;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+/* Keep device information readable */
+
+.registered-device-content .row-main {
+  flex: 1;
+  min-width: 0;
+}
+
+.registered-device-content .device-icon {
+  flex-shrink: 0;
+}

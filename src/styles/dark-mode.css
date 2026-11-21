@@ -1,0 +1,1112 @@
+
+/* =====================================
+   SCARECROW - COMPLETE DARK MODE
+===================================== */
+
+/* =====================================
+   1. THEME VARIABLES
+===================================== */
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
+
+  --theme-background: #17251d;
+  --theme-surface: #223329;
+  --theme-surface-secondary: #29382d;
+  --theme-surface-hover: #2d4134;
+
+  --theme-text: #edf4e9;
+  --theme-muted: #b8c9ba;
+
+  --theme-border: #3a5040;
+  --theme-input: #1b2b21;
+
+  --theme-primary: #91ad72;
+  --theme-accent: #e8f0b8;
+  --theme-hover-border: #668b68;
+}
+
+/* =====================================
+   2. GLOBAL BACKGROUNDS AND TEXT
+===================================== */
+
+:root[data-theme='dark'],
+:root[data-theme='dark'] body,
+:root[data-theme='dark'] #root {
+  background: var(--theme-background);
+  color: var(--theme-text);
+}
+
+:root[data-theme='dark'] .app-shell,
+:root[data-theme='dark'] .main-area,
+:root[data-theme='dark'] .page-content,
+:root[data-theme='dark'] .settings-page,
+:root[data-theme='dark'] .devices-page,
+:root[data-theme='dark'] .dashboard-page,
+:root[data-theme='dark'] .detections-page,
+:root[data-theme='dark'] .overview-page {
+  background: var(--theme-background);
+  color: var(--theme-text);
+}
+
+:root[data-theme='dark'] h1,
+:root[data-theme='dark'] h2,
+:root[data-theme='dark'] h3,
+:root[data-theme='dark'] h4,
+:root[data-theme='dark'] strong {
+  color: var(--theme-text);
+}
+
+:root[data-theme='dark'] p,
+:root[data-theme='dark'] small,
+:root[data-theme='dark'] label {
+  color: var(--theme-muted);
+}
+
+:root[data-theme='dark'] .muted,
+:root[data-theme='dark'] .text-muted {
+  color: var(--theme-muted);
+}
+
+:root[data-theme='dark'] a {
+  color: #b9d99e;
+}
+
+/* =====================================
+   3. SIDEBAR
+===================================== */
+
+:root[data-theme='dark'] .sidebar {
+  background: #142119;
+  color: var(--theme-text);
+  border-color: var(--theme-border);
+}
+
+:root[data-theme='dark'] .sidebar h1,
+:root[data-theme='dark'] .sidebar h2,
+:root[data-theme='dark'] .sidebar p,
+:root[data-theme='dark'] .sidebar span {
+  color: var(--theme-text);
+}
+
+:root[data-theme='dark'] .sidebar a,
+:root[data-theme='dark'] .sidebar button {
+  color: #dce9dc;
+}
+
+:root[data-theme='dark'] .nav-item,
+:root[data-theme='dark'] .sidebar-nav a {
+  color: var(--theme-muted);
+}
+
+:root[data-theme='dark'] .nav-item:hover,
+:root[data-theme='dark'] .sidebar-nav a:hover {
+  background: var(--theme-surface-hover);
+  color: var(--theme-accent);
+}
+
+:root[data-theme='dark'] .nav-item.active,
+:root[data-theme='dark'] .sidebar-nav a.active {
+  background: #304735;
+  color: var(--theme-accent);
+}
+
+/* =====================================
+   4. TOPBAR
+===================================== */
+
+:root[data-theme='dark'] .topbar {
+  background: var(--theme-surface);
+  color: var(--theme-text);
+  border-color: var(--theme-border);
+}
+
+:root[data-theme='dark'] .topbar h1,
+:root[data-theme='dark'] .topbar-caption,
+:root[data-theme='dark'] .topbar-heading h1 {
+  color: var(--theme-text);
+}
+
+:root[data-theme='dark'] .topbar-theme-toggle {
+  background: var(--theme-surface-secondary);
+  color: var(--theme-accent);
+  border-color: var(--theme-border);
+}
+
+:root[data-theme='dark'] .topbar-theme-toggle:hover {
+  background: var(--theme-surface-hover);
+  border-color: var(--theme-hover-border);
+}
+
+/* =====================================
+   5. PANELS AND CARDS
+===================================== */
+
+:root[data-theme='dark'] .panel,
+:root[data-theme='dark'] .stat-card,
+:root[data-theme='dark'] .settings-panel,
+:root[data-theme='dark'] .account-card,
+:root[data-theme='dark'] .device-card,
+:root[data-theme='dark'] .overview-card,
+:root[data-theme='dark'] .dashboard-card,
+:root[data-theme='dark'] .alert-card,
+:root[data-theme='dark'] .detection-card {
+  background: var(--theme-surface);
+  color: var(--theme-text);
+  border-color: var(--theme-border);
+}
+
+:root[data-theme='dark'] .account-card {
+  background: var(--theme-surface-secondary);
+}
+
+:root[data-theme='dark'] .panel-title,
+:root[data-theme='dark'] .panel-title h2 {
+  color: var(--theme-text);
+}
+
+:root[data-theme='dark'] .panel-title p {
+  color: var(--theme-muted);
+}
+
+/* Card hover transitions */
+
+:root[data-theme='dark'] .panel,
+:root[data-theme='dark'] .stat-card,
+:root[data-theme='dark'] .device-card,
+:root[data-theme='dark'] .overview-card,
+:root[data-theme='dark'] .dashboard-card,
+:root[data-theme='dark'] .alert-card,
+:root[data-theme='dark'] .detection-card {
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+:root[data-theme='dark'] .panel:hover,
+:root[data-theme='dark'] .stat-card:hover,
+:root[data-theme='dark'] .device-card:hover,
+:root[data-theme='dark'] .overview-card:hover,
+:root[data-theme='dark'] .dashboard-card:hover,
+:root[data-theme='dark'] .alert-card:hover,
+:root[data-theme='dark'] .detection-card:hover {
+  background: var(--theme-surface-hover);
+  border-color: var(--theme-hover-border);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.14);
+}
+
+:root[data-theme='dark'] .settings-panel:hover {
+  border-color: var(--theme-hover-border);
+}
+
+/* =====================================
+   6. INPUTS AND SEARCH FIELDS
+===================================== */
+
+:root[data-theme='dark'] input,
+:root[data-theme='dark'] select,
+:root[data-theme='dark'] textarea,
+:root[data-theme='dark'] .search-box,
+:root[data-theme='dark'] .search-input {
+  background: var(--theme-input);
+  color: var(--theme-text);
+  border-color: var(--theme-border);
+}
+
+:root[data-theme='dark'] input::placeholder,
+:root[data-theme='dark'] textarea::placeholder {
+  color: #9eafa1;
+}
+
+:root[data-theme='dark'] select option {
+  background: var(--theme-surface);
+  color: var(--theme-text);
+}
+
+:root[data-theme='dark'] input:focus,
+:root[data-theme='dark'] select:focus,
+:root[data-theme='dark'] textarea:focus {
+  border-color: var(--theme-hover-border);
+  outline: none;
+}
+
+/* =====================================
+   7. TABLES
+===================================== */
+
+:root[data-theme='dark'] table {
+  background: var(--theme-surface);
+  color: var(--theme-text);
+}
+
+:root[data-theme='dark'] th {
+  background: var(--theme-surface-secondary);
+  color: #c5d5c6;
+  border-color: var(--theme-border);
+}
+
+:root[data-theme='dark'] td {
+  color: var(--theme-text);
+  border-color: var(--theme-border);
+}
+
+:root[data-theme='dark'] tr:hover td {
+  background: var(--theme-surface-hover);
+}
+
+/* =====================================
+   8. BUTTONS AND FILTERS
+===================================== */
+
+:root[data-theme='dark'] .secondary-button,
+:root[data-theme='dark'] .refresh-button,
+:root[data-theme='dark'] .menu-button,
+:root[data-theme='dark'] .filter-button,
+:root[data-theme='dark'] .date-filter,
+:root[data-theme='dark'] .filter-option {
+  background: var(--theme-surface-secondary);
+  color: var(--theme-text);
+  border-color: var(--theme-border);
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+:root[data-theme='dark'] .secondary-button:hover,
+:root[data-theme='dark'] .refresh-button:hover,
+:root[data-theme='dark'] .menu-button:hover,
+:root[data-theme='dark'] .filter-button:hover,
+:root[data-theme='dark'] .date-filter:hover,
+:root[data-theme='dark'] .filter-option:hover {
+  background: #405b45;
+  border-color: #789b76;
+  color: var(--theme-text);
+}
+
+:root[data-theme='dark'] .filter-button.active,
+:root[data-theme='dark'] .date-filter.active,
+:root[data-theme='dark'] .filter-option.active {
+  background: #3b5941;
+  border-color: #789b76;
+  color: var(--theme-text);
+}
+
+/* Primary buttons retain original styling */
+
+:root[data-theme='dark'] .primary-button {
+  color: #ffffff;
+}
+
+/* =====================================
+   9. STATUS BADGES AND NOTIFICATIONS
+===================================== */
+
+:root[data-theme='dark'] .status-badge,
+:root[data-theme='dark'] .device-status,
+:root[data-theme='dark'] .connection-status {
+  border-color: var(--theme-border);
+}
+
+/* Notification switches */
+
+:root[data-theme='dark'] .toggle:not(.enabled) {
+  background: #526256;
+}
+
+:root[data-theme='dark'] .toggle.enabled {
+  background: var(--theme-primary);
+}
+
+/* =====================================
+   10. LOGS AND SHARED LISTS
+===================================== */
+
+:root[data-theme='dark'] .pref-row,
+:root[data-theme='dark'] .alert-log-row,
+:root[data-theme='dark'] .detection-log-row,
+:root[data-theme='dark'] .device-row,
+:root[data-theme='dark'] .log-row {
+  border-color: var(--theme-border);
+}
+
+:root[data-theme='dark'] .pref-row:hover,
+:root[data-theme='dark'] .alert-log-row:hover,
+:root[data-theme='dark'] .detection-log-row:hover {
+  background: var(--theme-surface-hover);
+}
+
+/* =====================================
+   11. DEVICE ROW
+===================================== */
+
+:root[data-theme='dark'] .device-row {
+  background: var(--theme-surface-secondary);
+  border: 1px solid var(--theme-border);
+  color: var(--theme-text);
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+:root[data-theme='dark'] .device-row:hover {
+  background: var(--theme-surface-hover);
+  border-color: var(--theme-hover-border);
+}
+
+:root[data-theme='dark'] .device-icon {
+  background: #344b3b;
+  color: var(--theme-primary);
+}
+
+:root[data-theme='dark'] .row-main b {
+  color: var(--theme-text);
+}
+
+:root[data-theme='dark'] .row-main small {
+  color: var(--theme-muted);
+}
+
+/* =====================================
+   12. DETECTION LOGS PAGE
+===================================== */
+
+/* Main sections */
+
+:root[data-theme='dark'] .detection-summary-section,
+:root[data-theme='dark'] .detection-logs-panel {
+  background: var(--theme-surface);
+  border-color: var(--theme-border);
+  color: var(--theme-text);
+}
+
+/* Section headings */
+
+:root[data-theme='dark'] .detection-section-heading h2,
+:root[data-theme='dark'] .detection-group-heading h3,
+:root[data-theme='dark'] .detection-logs-panel .panel-title h2 {
+  color: var(--theme-text);
+}
+
+:root[data-theme='dark'] .detection-section-heading p,
+:root[data-theme='dark'] .detection-logs-panel .panel-title p {
+  color: var(--theme-muted);
+}
+
+/* Summary cards */
+
+:root[data-theme='dark'] .detection-summary-card {
+  background: var(--theme-surface-secondary);
+  border-color: var(--theme-border);
+  color: var(--theme-text);
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+:root[data-theme='dark'] .detection-summary-card:hover {
+  background: var(--theme-surface-hover);
+  border-color: var(--theme-hover-border);
+}
+
+:root[data-theme='dark'] .detection-summary-card span {
+  color: var(--theme-muted);
+}
+
+:root[data-theme='dark'] .detection-summary-card strong {
+  color: var(--theme-text);
+}
+
+:root[data-theme='dark'] .detection-summary-icon {
+  border-color: var(--theme-border);
+}
+
+/* Summary labels and result count */
+
+:root[data-theme='dark'] .detection-summary-label,
+:root[data-theme='dark'] .result-count {
+  background: #304735;
+  color: #dcecc9;
+  border-color: #48634c;
+}
+
+/* Detection toolbar */
+
+:root[data-theme='dark'] .detection-toolbar {
+  color: var(--theme-text);
+}
+
+:root[data-theme='dark'] .detection-toolbar .search-box {
+  background: var(--theme-input);
+  border: 1px solid var(--theme-border);
+  color: var(--theme-muted);
+}
+
+:root[data-theme='dark'] .detection-toolbar .search-box input {
+  background: transparent;
+  color: var(--theme-text);
+  border: none;
+}
+
+:root[data-theme='dark'] .detection-toolbar .search-box input::placeholder {
+  color: #9eafa1;
+}
+
+:root[data-theme='dark'] .detection-toolbar .detection-filter {
+  background: var(--theme-input);
+  border: 1px solid var(--theme-border);
+  color: var(--theme-muted);
+}
+
+:root[data-theme='dark'] .detection-toolbar .detection-filter select {
+  background: transparent;
+  color: var(--theme-text);
+  border: none;
+}
+
+:root[data-theme='dark'] .detection-toolbar .detection-filter select option {
+  background: var(--theme-surface);
+  color: var(--theme-text);
+}
+
+:root[data-theme='dark'] .detection-toolbar .search-box:focus-within,
+:root[data-theme='dark'] .detection-toolbar .detection-filter:focus-within {
+  border-color: #789b76;
+  box-shadow: 0 0 0 2px rgba(120, 155, 118, 0.15);
+}
+
+/* Detection groups */
+
+:root[data-theme='dark'] .detection-log-group {
+  color: var(--theme-text);
+}
+
+:root[data-theme='dark'] .detection-group-heading {
+  color: var(--theme-text);
+  border-color: var(--theme-border);
+}
+
+:root[data-theme='dark'] .detection-group-heading span {
+  background: #304735;
+  color: #dcecc9;
+}
+
+/* Individual detection records */
+
+:root[data-theme='dark'] .detection-log-item {
+  background: var(--theme-surface-secondary);
+  border-color: var(--theme-border);
+  color: var(--theme-text);
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+:root[data-theme='dark'] .detection-log-item:hover {
+  background: var(--theme-surface-hover);
+  border-color: var(--theme-hover-border);
+}
+
+:root[data-theme='dark'] .detection-log-info strong {
+  color: var(--theme-text);
+}
+
+:root[data-theme='dark'] .detection-log-details,
+:root[data-theme='dark'] .detection-log-time {
+  color: var(--theme-muted);
+}
+
+:root[data-theme='dark'] .detection-log-dot {
+  color: #789b76;
+}
+
+:root[data-theme='dark'] .detection-log-icon {
+  background: #304735;
+  color: #c5dda9;
+}
+
+:root[data-theme='dark'] .detection-log-badge {
+  background: #304735;
+  color: #c5dda9;
+  border-color: #48634c;
+}
+
+/* Show all / show less */
+
+:root[data-theme='dark'] .detection-expand-button {
+  background: var(--theme-surface-secondary);
+  color: #dcecc9;
+  border-color: var(--theme-border);
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+:root[data-theme='dark'] .detection-expand-button:hover {
+  background: #3b5941;
+  border-color: #789b76;
+  color: var(--theme-text);
+}
+
+/* Detection empty and loading states */
+
+:root[data-theme='dark'] .detections-page .empty-state,
+:root[data-theme='dark'] .detections-page .loading-state {
+  color: var(--theme-muted);
+}
+
+/* =====================================
+   13. DEVICES PAGE
+===================================== */
+
+/* Main devices panel */
+
+:root[data-theme='dark'] .devices-page .panel {
+  background: var(--theme-surface);
+  border-color: var(--theme-border);
+}
+
+/* Registered devices */
+
+:root[data-theme='dark'] .registered-device-item {
+  background: var(--theme-surface-secondary);
+  border: 1px solid var(--theme-border);
+  color: var(--theme-text);
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+:root[data-theme='dark'] .registered-device-item:hover {
+  background: var(--theme-surface-hover);
+  border-color: var(--theme-hover-border);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+:root[data-theme='dark'] .registered-device-content {
+  color: var(--theme-text);
+}
+
+/* Device action buttons */
+
+:root[data-theme='dark'] .device-action-btn {
+  background: #344538;
+  border-color: #48634c;
+  color: #dcecc9;
+}
+
+:root[data-theme='dark'] .device-action-btn:hover {
+  background: #405b45;
+  border-color: #789b76;
+  color: var(--theme-text);
+}
+
+:root[data-theme='dark'] .device-action-btn.edit {
+  color: #c5dda9;
+}
+
+:root[data-theme='dark'] .device-action-btn.archive {
+  color: #e6b6a9;
+}
+
+/* Device search */
+
+:root[data-theme='dark'] .devices-page .toolbar .search-box {
+  background: var(--theme-input);
+  border-color: var(--theme-border);
+  color: var(--theme-muted);
+}
+
+:root[data-theme='dark'] .devices-page .toolbar .search-box input {
+  background: transparent;
+  color: var(--theme-text);
+  border: none;
+}
+
+:root[data-theme='dark'] .devices-page .toolbar .search-box input::placeholder {
+  color: #9eafa1;
+}
+
+/* Success message */
+
+:root[data-theme='dark'] .device-success-message {
+  background: #263f2e;
+  color: #c5dda9;
+  border-color: #48634c;
+}
+
+/* Note strips */
+
+:root[data-theme='dark'] .devices-page .note-strip,
+:root[data-theme='dark'] .overview-page .note-strip {
+  background: var(--theme-surface);
+  color: #c5dda9;
+  border-color: var(--theme-border);
+}
+
+/* =====================================
+   14. DEVICE MODALS
+===================================== */
+
+:root[data-theme='dark'] .device-modal {
+  background: var(--theme-surface);
+  color: var(--theme-text);
+  border: 1px solid var(--theme-border);
+}
+
+:root[data-theme='dark'] .device-modal-header {
+  border-color: var(--theme-border);
+}
+
+:root[data-theme='dark'] .device-modal h2,
+:root[data-theme='dark'] .device-modal-header h2 {
+  color: var(--theme-text);
+}
+
+:root[data-theme='dark'] .device-modal p,
+:root[data-theme='dark'] .password-modal-description {
+  color: var(--theme-muted);
+}
+
+:root[data-theme='dark'] .device-modal-close {
+  background: var(--theme-surface-secondary);
+  color: #dcecc9;
+  border-color: var(--theme-border);
+}
+
+:root[data-theme='dark'] .device-modal-close:hover {
+  background: #405b45;
+  color: var(--theme-text);
+}
+
+/* Form fields */
+
+:root[data-theme='dark'] .device-form-group label {
+  color: #dce9dc;
+}
+
+:root[data-theme='dark'] .device-form-group input,
+:root[data-theme='dark'] .device-form-group select {
+  background: var(--theme-input);
+  color: var(--theme-text);
+  border-color: var(--theme-border);
+}
+
+:root[data-theme='dark'] .device-form-group input::placeholder {
+  color: #9eafa1;
+}
+
+:root[data-theme='dark'] .device-form-group input:focus,
+:root[data-theme='dark'] .device-form-group select:focus {
+  border-color: #789b76;
+  box-shadow: 0 0 0 2px rgba(120, 155, 118, 0.15);
+  outline: none;
+}
+
+:root[data-theme='dark'] .device-form-group select option {
+  background: var(--theme-surface);
+  color: var(--theme-text);
+}
+
+/* Modal buttons */
+
+:root[data-theme='dark'] .device-cancel-btn {
+  background: #344538;
+  color: var(--theme-text);
+  border-color: #48634c;
+}
+
+:root[data-theme='dark'] .device-cancel-btn:hover {
+  background: #405b45;
+}
+
+:root[data-theme='dark'] .device-save-btn {
+  color: #ffffff;
+}
+
+/* Password confirmation */
+
+:root[data-theme='dark'] .password-heading-icon {
+  color: #c5dda9;
+}
+
+/* Error messages */
+
+:root[data-theme='dark'] .device-error-message {
+  background: #482c2a;
+  color: #ffc5bb;
+  border-color: #75413b;
+}
+
+/* =====================================
+   15. OVERVIEW PAGE
+===================================== */
+
+/* Welcome section */
+
+:root[data-theme='dark'] .welcome-row h1 {
+  color: var(--theme-text);
+}
+
+:root[data-theme='dark'] .welcome-row p {
+  color: var(--theme-muted);
+}
+
+/* Overview panels */
+
+:root[data-theme='dark'] .overview-page > .panel,
+:root[data-theme='dark'] .overview-device-statistics {
+  background: var(--theme-surface);
+  border-color: var(--theme-border);
+  color: var(--theme-text);
+}
+
+/* Statistics cards */
+
+:root[data-theme='dark'] .overview-page .stat-card {
+  background: var(--theme-surface-secondary);
+  border-color: var(--theme-border);
+  color: var(--theme-text);
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+:root[data-theme='dark'] .overview-page .stat-card:hover {
+  background: var(--theme-surface-hover);
+  border-color: var(--theme-hover-border);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+:root[data-theme='dark'] .overview-page .stat-label,
+:root[data-theme='dark'] .overview-page .stat-note {
+  color: var(--theme-muted);
+}
+
+:root[data-theme='dark'] .overview-page .stat-value {
+  color: var(--theme-text);
+}
+
+/* Device selection cards */
+
+:root[data-theme='dark'] .overview-device-select {
+  background: var(--theme-surface-secondary);
+  border: 1px solid var(--theme-border);
+  color: var(--theme-text);
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+:root[data-theme='dark'] .overview-device-select:hover {
+  background: var(--theme-surface-hover);
+  border-color: var(--theme-hover-border);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+:root[data-theme='dark'] .overview-device-select.selected {
+  background: #304735;
+  border-color: #789b76;
+  box-shadow: 0 0 0 1px rgba(120, 155, 118, 0.15);
+}
+
+:root[data-theme='dark'] .overview-select-indicator {
+  color: #c5dda9;
+}
+
+/* Device statistics filters */
+
+:root[data-theme='dark'] .overview-stat-filters button {
+  background: var(--theme-surface-secondary);
+  color: #dce9dc;
+  border: 1px solid var(--theme-border);
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+:root[data-theme='dark'] .overview-stat-filters button:hover {
+  background: #405b45;
+  border-color: #789b76;
+}
+
+:root[data-theme='dark'] .overview-stat-filters button.active {
+  background: #3b5941;
+  border-color: #789b76;
+  color: var(--theme-text);
+}
+
+/* Selected device statistics heading */
+
+:root[data-theme='dark'] .overview-device-statistics h2 {
+  color: var(--theme-text);
+}
+
+:root[data-theme='dark'] .overview-device-statistics p {
+  color: var(--theme-muted);
+}
+
+/* =====================================
+   16. MODALS, POPUPS AND DROPDOWNS
+===================================== */
+
+:root[data-theme='dark'] .modal,
+:root[data-theme='dark'] .modal-content,
+:root[data-theme='dark'] .dialog,
+:root[data-theme='dark'] .dropdown-menu,
+:root[data-theme='dark'] .popover {
+  background: var(--theme-surface);
+  color: var(--theme-text);
+  border-color: var(--theme-border);
+}
+
+/* =====================================
+   17. EMPTY, LOADING AND FOOTER
+===================================== */
+
+:root[data-theme='dark'] .loading-state,
+:root[data-theme='dark'] .empty-state {
+  color: var(--theme-muted);
+}
+
+:root[data-theme='dark'] .app-footer {
+  color: var(--theme-muted);
+  border-color: var(--theme-border);
+}
+
+/* =====================================
+   18. SCROLLBARS
+===================================== */
+
+:root[data-theme='dark'] * {
+  scrollbar-color: #526b58 var(--theme-background);
+}
+
+
+/* =====================================
+   19. SIDEBAR - COMPLETE DARK MODE
+===================================== */
+
+/* Sidebar background */
+
+:root[data-theme='dark'] .sidebar {
+  background: #142119;
+  color: var(--theme-text);
+  border-right: 1px solid var(--theme-border);
+}
+
+/* Brand area */
+
+:root[data-theme='dark'] .sidebar-brand {
+  background: transparent;
+  color: var(--theme-text);
+}
+
+/* Workspace caption */
+
+:root[data-theme='dark'] .side-caption {
+  color: #91a997;
+}
+
+/* Navigation container */
+
+:root[data-theme='dark'] .side-nav {
+  background: transparent;
+}
+
+/* Navigation buttons */
+
+:root[data-theme='dark'] .side-nav .nav-item {
+  background: transparent;
+  color: var(--theme-muted);
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+:root[data-theme='dark'] .side-nav .nav-item:hover {
+  background: #293e30;
+  color: var(--theme-accent);
+}
+
+:root[data-theme='dark'] .side-nav .nav-item.active {
+  background: #304735;
+  color: var(--theme-accent);
+}
+
+:root[data-theme='dark'] .side-nav .nav-item svg {
+  color: inherit;
+}
+
+/* Bottom sidebar section */
+
+:root[data-theme='dark'] .sidebar-bottom {
+  background: transparent;
+  border-color: var(--theme-border);
+}
+
+/* Secure administrator information */
+
+:root[data-theme='dark'] .sidebar-secure {
+  background: #223329;
+  color: #c5dda9;
+  border: 1px solid var(--theme-border);
+}
+
+:root[data-theme='dark'] .sidebar-secure span {
+  color: #c5dda9;
+}
+
+/* Sign out button */
+
+:root[data-theme='dark'] .sidebar-logout {
+  background: transparent;
+  color: #e0b3a9;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+:root[data-theme='dark'] .sidebar-logout:hover {
+  background: #482c2a;
+  color: #ffc5bb;
+}
+
+:root[data-theme='dark'] .sidebar-logout svg {
+  color: inherit;
+}
+
+/* Mobile sidebar overlay */
+
+:root[data-theme='dark'] .sidebar-scrim {
+  background: rgba(0, 0, 0, 0.65);
+}
+
+/* =====================================
+   SIDEBAR BRAND - SCARECROW TEXT
+===================================== */
+
+:root[data-theme='dark'] .sidebar-brand,
+:root[data-theme='dark'] .sidebar-brand * {
+  color: #edf4e9;
+}
+
+:root[data-theme='dark'] .sidebar-brand h1,
+:root[data-theme='dark'] .sidebar-brand h2,
+:root[data-theme='dark'] .sidebar-brand span,
+:root[data-theme='dark'] .sidebar-brand strong {
+  color: #edf4e9;
+}
+
+/* =====================================
+   TOPBAR THEME TOGGLE - CAPSULE STYLE
+===================================== */
+
+.topbar-theme-toggle {
+  width: 58px;
+  height: 32px;
+  padding: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  border: 1px solid #dce6d7;
+  border-radius: 999px;
+  background: #edf3e9;
+  color: #456b43;
+  cursor: pointer;
+  transition:
+    background-color 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.topbar-theme-toggle svg {
+  width: 24px;
+  height: 24px;
+  padding: 4px;
+  border-radius: 50%;
+  background: #ffffff;
+  color: #527b45;
+  transition:
+    transform 0.3s ease,
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+
+.topbar-theme-toggle:hover {
+  box-shadow: 0 0 0 3px rgba(110, 150, 100, 0.12);
+}
+
+/* Dark mode */
+:root[data-theme='dark'] .topbar-theme-toggle {
+  justify-content: flex-end;
+  background: #304735;
+  border-color: #526b55;
+  color: #e8f0b8;
+}
+
+:root[data-theme='dark'] .topbar-theme-toggle svg {
+  background: #91ad72;
+  color: #17251d;
+}
+
+:root[data-theme='dark'] .topbar-theme-toggle:hover {
+  background: #3a5540;
+  box-shadow: 0 0 0 3px rgba(145, 173, 114, 0.15);
+}
+
+
+/* DEVICE ROW - DARK MODE */
+
+:root[data-theme='dark'] .registered-device-content,
+:root[data-theme='dark'] .registered-device-content .device-row {
+  border: none !important;
+  outline: none !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+:root[data-theme='dark'] .overview-device-select {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+:root[data-theme='dark'] .overview-device-select:hover {
+  background: #293b2e;
+}
+
+:root[data-theme='dark'] .overview-device-select.selected {
+  background: #304735;
+}
+
+:root[data-theme='dark'] .overview-device-select.selected:hover {
+  background: #384f3b;
+}
+
+:root[data-theme='dark'] .overview-select-indicator {
+  color: #aab9a8;
+}
+
+:root[data-theme='dark'] .overview-device-select:hover .overview-select-indicator,
+:root[data-theme='dark'] .overview-device-select.selected .overview-select-indicator {
+  color: #b9d99b;
+}
+
+/* DARK MODE */
+
+:root[data-theme='dark'] .sidebar-logout {
+  background: transparent;
+  color: #d99a90;
+}
+
+:root[data-theme='dark'] .sidebar-logout:hover {
+  background: #3b2d2b;
+  border-color: transparent;
+  color: #ffb4a9;
+  box-shadow: none;
+}
