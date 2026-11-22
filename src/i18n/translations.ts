@@ -149,6 +149,11 @@ export const translations: Record<Language, Record<string, string>> = {
 
     noStatistics: 'No statistics available for this device and date range.',
     thisWeek: 'This Week',
+
+    customRange: 'Custom Range',
+    startDate: 'Start Date',
+    endDate: 'End Date',
+    selectValidDateRange: 'Please select a valid date range.',
   },
 
   ceb: {
@@ -297,5 +302,10 @@ export const translations: Record<Language, Record<string, string>> = {
 
     noStatistics: 'Walay estadistika alang niini nga device ug panahon.',
     thisWeek: 'Karong Semanaha',
+
+    customRange: 'Pasadya nga Petsa',
+    startDate: 'Petsa sa Pagsugod',
+    endDate: 'Petsa sa Pagtapos',
+    selectValidDateRange: 'Palihog pagpili og husto nga sakop sa petsa.',
   },
 }

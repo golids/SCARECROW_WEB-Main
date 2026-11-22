@@ -20,7 +20,7 @@ import type {
   Translate,
 } from '../types'
 
-type DateFilter = 'all' | 'today' | 'yesterday'
+type DateFilter = 'all' | 'today' | 'yesterday' | 'custom'
 
 type Props = {
   devices: Device[]
@@ -46,6 +46,17 @@ function getStartOfDay(date: Date) {
   const result = new Date(date)
   result.setHours(0, 0, 0, 0)
   return result
+}
+
+// Parse date input using local time.
+function parseDateInput(value: string): Date | null {
+  if (!value) return null
+
+  const [year, month, day] = value.split('-').map(Number)
+
+  if (!year || !month || !day) return null
+
+  return new Date(year, month - 1, day)
 }
 
 function formatDate(value: string, language: Language) {
@@ -89,9 +100,15 @@ export default function Detections({
   const [search, setSearch] = useState('')
   const [selectedDevice, setSelectedDevice] = useState('all')
   const [dateFilter, setDateFilter] = useState<DateFilter>('all')
+
+  // Custom date range
+  const [startDate, setStartDate] = useState('')
+  const [endDate, setEndDate] = useState('')
+
   const [showAll, setShowAll] = useState(false)
 
   const today = useMemo(() => new Date(), [])
+
   const yesterday = useMemo(() => {
     const date = new Date(today)
     date.setDate(date.getDate() - 1)
@@ -136,8 +153,21 @@ export default function Detections({
     }
   }, [birdLogs, today])
 
+  // Filter bird detections.
   const filteredLogs = useMemo(() => {
     const query = search.trim().toLowerCase()
+
+    const startBoundary = parseDateInput(startDate)
+    const endBoundary = parseDateInput(endDate)
+
+    // Add one day so the selected end date is inclusive.
+    const endExclusive = endBoundary
+      ? new Date(endBoundary)
+      : null
+
+    if (endExclusive) {
+      endExclusive.setDate(endExclusive.getDate() + 1)
+    }
 
     return birdLogs.filter(log => {
       const logDate = new Date(log.created_at)
@@ -146,12 +176,17 @@ export default function Detections({
         selectedDevice === 'all' ||
         log.device_id === selectedDevice
 
-      const matchesDate =
-        dateFilter === 'all' ||
-        (dateFilter === 'today' &&
-          isSameDay(logDate, today)) ||
-        (dateFilter === 'yesterday' &&
-          isSameDay(logDate, yesterday))
+      let matchesDate = true
+
+      if (dateFilter === 'today') {
+        matchesDate = isSameDay(logDate, today)
+      } else if (dateFilter === 'yesterday') {
+        matchesDate = isSameDay(logDate, yesterday)
+      } else if (dateFilter === 'custom') {
+        matchesDate =
+          (!startBoundary || logDate >= startBoundary) &&
+          (!endExclusive || logDate < endExclusive)
+      }
 
       const deviceName = getDeviceName(log, devices)
 
@@ -174,6 +209,8 @@ export default function Detections({
     birdLogs,
     selectedDevice,
     dateFilter,
+    startDate,
+    endDate,
     search,
     devices,
     today,
@@ -207,6 +244,15 @@ export default function Detections({
 
     return groups
   }, [visibleLogs, today, yesterday])
+
+  function handleDateFilterChange(value: DateFilter) {
+    setDateFilter(value)
+
+    if (value !== 'custom') {
+      setStartDate('')
+      setEndDate('')
+    }
+  }
 
   function renderLog(log: Log) {
     const deviceName = getDeviceName(log, devices)
@@ -315,17 +361,6 @@ export default function Detections({
               <strong>{summary.week}</strong>
             </div>
           </div>
-
-          <div className="detection-summary-card">
-            <div className="detection-summary-icon species">
-              <Filter size={19} />
-            </div>
-
-            <div>
-              <span>Species Detected</span>
-              <strong>{summary.species}</strong>
-            </div>
-          </div>
         </div>
       </section>
 
@@ -358,6 +393,8 @@ export default function Detections({
             />
           </div>
 
+          {/* DEVICE FILTER */}
+
           <div className="detection-filter">
             <Filter size={15} />
 
@@ -380,23 +417,62 @@ export default function Detections({
             <ChevronDown size={14} />
           </div>
 
+          {/* DATE FILTER */}
+
           <div className="detection-filter">
             <CalendarDays size={15} />
 
             <select
               value={dateFilter}
               onChange={event =>
-                setDateFilter(event.target.value as DateFilter)
+                handleDateFilterChange(
+                  event.target.value as DateFilter
+                )
               }
               aria-label="Filter by date"
             >
               <option value="all">All Dates</option>
               <option value="today">Today</option>
               <option value="yesterday">Yesterday</option>
+              <option value="custom">Custom Range</option>
             </select>
 
             <ChevronDown size={14} />
           </div>
+
+          {/* CUSTOM DATE RANGE */}
+
+          {dateFilter === 'custom' && (
+            <div className="detection-date-range">
+              <label className="detection-date-field">
+                <span>From</span>
+
+                <input
+                  type="date"
+                  value={startDate}
+                  max={endDate || undefined}
+                  onChange={event =>
+                    setStartDate(event.target.value)
+                  }
+                  aria-label="Start date"
+                />
+              </label>
+
+              <label className="detection-date-field">
+                <span>To</span>
+
+                <input
+                  type="date"
+                  value={endDate}
+                  min={startDate || undefined}
+                  onChange={event =>
+                    setEndDate(event.target.value)
+                  }
+                  aria-label="End date"
+                />
+              </label>
+            </div>
+          )}
         </div>
 
         {/* LOG RESULTS */}
@@ -408,7 +484,9 @@ export default function Detections({
         ) : filteredLogs.length === 0 ? (
           <Empty
             text={
-              search || selectedDevice !== 'all' || dateFilter !== 'all'
+              search ||
+              selectedDevice !== 'all' ||
+              dateFilter !== 'all'
                 ? 'No bird detections match your filters.'
                 : 'No bird detections have been recorded yet.'
             }

@@ -15,7 +15,7 @@ import DeviceRow from '../components/DeviceRow'
 import type { Device, Language, Log, Translate } from '../types'
 import { alive } from '../utils/deviceHelpers'
 
-type StatsPreset = '7d' | '30d' | 'all'
+type StatsPreset = '7d' | '30d' | 'all' | 'custom'
 
 type Props = {
   devices: Device[]
@@ -39,6 +39,28 @@ function isOfflineEvent(log: Log) {
   )
 }
 
+// Parse YYYY-MM-DD as a local date instead of UTC.
+function parseLocalDate(value: string) {
+  if (!value) return null
+
+  const [year, month, day] = value.split('-').map(Number)
+
+  if (!year || !month || !day) return null
+
+  const date = new Date(year, month - 1, day)
+
+  // Reject invalid calendar dates.
+  if (
+    date.getFullYear() !== year ||
+    date.getMonth() !== month - 1 ||
+    date.getDate() !== day
+  ) {
+    return null
+  }
+
+  return date
+}
+
 export default function Overview({
   devices,
   logs,
@@ -51,6 +73,9 @@ export default function Overview({
     useState<string | null>(null)
 
   const [preset, setPreset] = useState<StatsPreset>('7d')
+
+  const [startDate, setStartDate] = useState('')
+  const [endDate, setEndDate] = useState('')
 
   const today = new Date()
 
@@ -76,16 +101,46 @@ export default function Overview({
   const filteredLogs = useMemo(() => {
     if (preset === 'all') return selectedDeviceLogs
 
+    if (preset === 'custom') {
+      const start = parseLocalDate(startDate)
+      const end = parseLocalDate(endDate)
+
+      if (!start || !end || end < start) return []
+
+      start.setHours(0, 0, 0, 0)
+
+      // Exclusive next-day boundary includes the entire end date.
+      const endExclusive = new Date(end)
+      endExclusive.setDate(endExclusive.getDate() + 1)
+      endExclusive.setHours(0, 0, 0, 0)
+
+      return selectedDeviceLogs.filter(log => {
+        const logDate = new Date(log.created_at)
+
+        return (
+          !Number.isNaN(logDate.getTime()) &&
+          logDate >= start &&
+          logDate < endExclusive
+        )
+      })
+    }
+
     const days = preset === '7d' ? 7 : 30
-    const startDate = new Date()
-    startDate.setDate(startDate.getDate() - (days - 1))
-    startDate.setHours(0, 0, 0, 0)
+    const rangeStart = new Date()
+
+    rangeStart.setDate(rangeStart.getDate() - (days - 1))
+    rangeStart.setHours(0, 0, 0, 0)
 
     return selectedDeviceLogs.filter(log => {
       const logDate = new Date(log.created_at)
-      return logDate >= startDate && logDate <= new Date()
+
+      return (
+        !Number.isNaN(logDate.getTime()) &&
+        logDate >= rangeStart &&
+        logDate <= new Date()
+      )
     })
-  }, [selectedDeviceLogs, preset])
+  }, [selectedDeviceLogs, preset, startDate, endDate])
 
   const birdLogs = filteredLogs.filter(isBirdDetection)
   const offlineLogs = filteredLogs.filter(isOfflineEvent)
@@ -114,7 +169,22 @@ export default function Overview({
         : 0
     }
 
-    const days = preset === '7d' ? 7 : 30
+    let days = preset === '7d' ? 7 : 30
+
+    if (preset === 'custom') {
+      const start = parseLocalDate(startDate)
+      const end = parseLocalDate(endDate)
+
+      if (!start || !end || end < start) return 0
+
+      const millisecondsPerDay = 24 * 60 * 60 * 1000
+
+      days =
+        Math.round(
+          (end.getTime() - start.getTime()) /
+          millisecondsPerDay
+        ) + 1
+    }
 
     return Number((birdLogs.length / days).toFixed(1))
   })()
@@ -160,6 +230,14 @@ export default function Overview({
 
     return logDate >= startOfWeek && logDate <= new Date()
   }).length
+
+  const validCustomRange =
+    preset !== 'custom' ||
+    (
+      !!parseLocalDate(startDate) &&
+      !!parseLocalDate(endDate) &&
+      parseLocalDate(endDate)! >= parseLocalDate(startDate)!
+    )
 
   return (
     <div className="overview-page">
@@ -309,7 +387,60 @@ export default function Overview({
             >
               {t('allTime')}
             </button>
+
+            <button
+              className={preset === 'custom' ? 'active' : ''}
+              onClick={() => setPreset('custom')}
+              type="button"
+            >
+              {t('customRange')}
+            </button>
           </div>
+
+          {/* CUSTOM DATE INPUTS */}
+
+          {preset === 'custom' && (
+            <div className="overview-custom-date-range">
+              <div className="overview-date-field">
+                <label htmlFor="overview-start-date">
+                  {t('startDate')}
+                </label>
+
+                <input
+                  id="overview-start-date"
+                  type="date"
+                  value={startDate}
+                  max={endDate || undefined}
+                  onChange={event =>
+                    setStartDate(event.target.value)
+                  }
+                />
+              </div>
+
+              <div className="overview-date-field">
+                <label htmlFor="overview-end-date">
+                  {t('endDate')}
+                </label>
+
+                <input
+                  id="overview-end-date"
+                  type="date"
+                  value={endDate}
+                  min={startDate || undefined}
+                  max={new Date().toLocaleDateString('en-CA')}
+                  onChange={event =>
+                    setEndDate(event.target.value)
+                  }
+                />
+              </div>
+
+              {!validCustomRange && (
+                <span className="overview-date-error">
+                  {t('selectValidDateRange')}
+                </span>
+              )}
+            </div>
+          )}
 
           {/* STATISTICS */}
 

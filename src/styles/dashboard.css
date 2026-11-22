@@ -121,6 +121,82 @@
 }
 
 
+/* OVERVIEW CUSTOM DATE RANGE */
+
+.overview-custom-date-range {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 14px 0 20px;
+}
+
+.overview-date-field {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 41px;
+  padding: 0 12px;
+  border: 1px solid #e5e9d2;
+  border-radius: 9px;
+  background: #ffffff;
+  color: #718073;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.overview-date-field:focus-within {
+  border-color: #4f8f3a;
+  box-shadow: 0 0 0 2px rgba(79, 143, 58, 0.06);
+}
+
+.overview-date-field label {
+  color: #849084;
+  font-size: 11px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.overview-date-field input {
+  min-width: 135px;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: #183d27;
+  font-family: inherit;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.overview-date-field input::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+.overview-date-error {
+  width: 100%;
+  color: #d32f2f;
+  font-size: 11px;
+  font-weight: 500;
+}
+
+@media (max-width: 600px) {
+  .overview-custom-date-range {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .overview-date-field {
+    width: 100%;
+    box-sizing: border-box;
+    justify-content: space-between;
+  }
+
+  .overview-date-field input {
+    flex: 1;
+    min-width: 0;
+  }
+}
+
 /* OVERVIEW DEVICE SELECTION */
 
 .overview-device-select {
@@ -282,10 +358,6 @@
   color: #b99b30;
 }
 
-.detection-summary-icon.species {
-  background: #f0f1e8;
-  color: #64764d;
-}
 
 .detection-summary-card > div:last-child {
   display: flex;
@@ -426,6 +498,91 @@
   right: 10px;
   pointer-events: none;
   color: #849084;
+}
+
+/* CUSTOM DATE RANGE FILTER */
+
+.detection-date-range {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.detection-date-field {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 41px;
+  padding: 0 11px;
+  border: 1px solid #e5e9d2;
+  border-radius: 9px;
+  background: #ffffff;
+  color: #718073;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.detection-date-field:focus-within {
+  border-color: #4f8f3a;
+  box-shadow: 0 0 0 2px rgba(79, 143, 58, 0.06);
+}
+
+.detection-date-field label {
+  color: #849084;
+  font-size: 11px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.detection-date-field input {
+  min-width: 125px;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: #183d27;
+  font-family: inherit;
+  font-size: 11px;
+  cursor: pointer;
+}
+
+.detection-date-field input::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+.detection-date-field input:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+/* CUSTOM DATE RANGE RESPONSIVE */
+
+@media (max-width: 760px) {
+  .detection-date-range {
+    width: 100%;
+  }
+
+  .detection-date-field {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .detection-date-field input {
+    width: 100%;
+    min-width: 0;
+  }
+}
+
+@media (max-width: 420px) {
+  .detection-date-range {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .detection-date-field {
+    width: 100%;
+    box-sizing: border-box;
+  }
 }
 
 /* GROUPED LOGS */
@@ -771,4 +928,135 @@
   border: none !important;
   background: transparent !important;
   box-shadow: none !important;
+}
+
+/* =========================================
+   ALERTS & ACTIVITIES DATE FILTERS
+========================================= */
+
+.alerts-date-filters {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin: 16px 0;
+}
+
+.alerts-date-filters button {
+  min-height: 38px;
+  padding: 8px 15px;
+  border: 1px solid #e5e9d2;
+  border-radius: 9px;
+  background: #ffffff;
+  color: #526456;
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.alerts-date-filters button:hover {
+  background: #f7f9e9;
+  border-color: #4f8f3a;
+  color: #123b25;
+}
+
+.alerts-date-filters button.active {
+  background: #123b25;
+  border-color: #123b25;
+  color: #ffffff;
+}
+
+.alerts-date-filters button:focus-visible {
+  outline: 2px solid #4f8f3a;
+  outline-offset: 3px;
+}
+
+/* CUSTOM DATE RANGE */
+
+.alerts-custom-date-range {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  width: 100%;
+  margin-top: 5px;
+}
+
+.alerts-date-field {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  min-height: 41px;
+  padding: 0 12px;
+  border: 1px solid #e5e9d2;
+  border-radius: 9px;
+  background: #ffffff;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.alerts-date-field:focus-within {
+  border-color: #4f8f3a;
+  box-shadow: 0 0 0 2px rgba(79, 143, 58, 0.06);
+}
+
+.alerts-date-field label,
+.alerts-date-field span {
+  color: #849084;
+  font-size: 11px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.alerts-date-field input {
+  min-width: 125px;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: #183d27;
+  font-family: inherit;
+  font-size: 11px;
+  cursor: pointer;
+}
+
+.alerts-date-field input::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+.alerts-date-error {
+  width: 100%;
+  color: #d32f2f;
+  font-size: 11px;
+  font-weight: 500;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 760px) {
+  .alerts-date-filters {
+    gap: 7px;
+  }
+
+  .alerts-date-filters button {
+    flex: 1;
+    padding: 8px 10px;
+  }
+
+  .alerts-custom-date-range {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .alerts-date-field {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .alerts-date-field input {
+    flex: 1;
+    min-width: 0;
+  }
 }
