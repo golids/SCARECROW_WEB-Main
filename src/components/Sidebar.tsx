@@ -2,6 +2,7 @@
 import {
   LayoutDashboard,
   Cpu,
+  Users,
   Bird,
   Bell,
   Settings as SettingsIcon,
@@ -28,6 +29,7 @@ const navigation: {
 }[] = [
   { page: 'overview', label: 'overview', icon: LayoutDashboard },
   { page: 'devices', label: 'devices', icon: Cpu },
+  { page: 'clients', label: 'clients', icon: Users },
   { page: 'detections', label: 'detections', icon: Bird },
   { page: 'alerts', label: 'alerts', icon: Bell },
   { page: 'settings', label: 'settings', icon: SettingsIcon },

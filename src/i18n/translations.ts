@@ -16,6 +16,8 @@ export const translations: Record<Language, Record<string, string>> = {
     refresh: 'Refresh',
     fieldOps: 'FIELD OPERATIONS',
     goodDay: 'Good day, Administrator',
+    clients: 'Clients',
+    clientStats: 'Client Statistics',
 
     overviewDesc: "Here’s what’s happening across your ScareCROW field devices.",
 
@@ -81,7 +83,7 @@ export const translations: Record<Language, Record<string, string>> = {
     disconnection: 'Device disconnection',
     errors: 'Device errors',
     lowBattery: 'Low battery',
-    recovery: 'Device recovery',
+    reconnection: 'Device reconnection',
     birdDetection: 'Bird detection',
 
     language: 'Language',
@@ -170,6 +172,8 @@ export const translations: Record<Language, Record<string, string>> = {
     refresh: 'I-refresh',
     fieldOps: 'OPERASYON SA UMAHAN',
     goodDay: 'Maayong adlaw, Administrator',
+    clients: 'Mga Kliyente',
+    clientStats: 'Estadistika sa Kliyente',
 
     overviewDesc: 'Mao kini ang kahimtang sa imong mga ScareCROW device sa umahan.',
 
@@ -235,7 +239,7 @@ export const translations: Record<Language, Record<string, string>> = {
     disconnection: 'Naputol ang koneksyon sa device',
     errors: 'Mga sayop sa device',
     lowBattery: 'Hina ang baterya',
-    recovery: 'Nabalik ang koneksyon sa device',
+    reconnection: 'Nabalik ang koneksyon sa device',
     birdDetection: 'Nakit-an nga langgam',
 
     language: 'Pinulongan',

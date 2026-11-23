@@ -16,5 +16,9 @@
     "noUnusedLocals": false,
     "noUnusedParameters": false
   },
-  "include": ["src"]
+  "include": ["src", "supabase"],
+    "exclude": [
+    "node_modules",
+    "supabase"
+  ]
 }

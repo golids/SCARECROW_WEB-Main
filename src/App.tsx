@@ -16,6 +16,7 @@ import Topbar from './components/Topbar'
 import Login from './pages/Login'
 import Overview from './pages/Overview'
 import Devices from './pages/Devices'
+import Clients from './pages/Clients'
 import Detections from './pages/Detections'
 import Alerts from './pages/Alerts'
 import Settings from './pages/Settings'
@@ -44,6 +45,8 @@ export default function App() {
   const {
     session,
     loading: authLoading,
+    isAdmin,
+    adminLoading,
     signIn,
     signOut,
   } = useAuth()
@@ -52,10 +55,13 @@ export default function App() {
     devices,
     logs,
     preferences,
+    clientStats,
     loading: dataLoading,
     error,
     refresh,
-  } = useDashboardData({ session })
+  } = useDashboardData({
+    session: isAdmin ? session : null,
+  })
 
   const t = (key: string) =>
     translations[language][key] ??
@@ -83,7 +89,7 @@ export default function App() {
     )
   }
 
-  if (authLoading) {
+  if (authLoading || adminLoading) {
     return (
       <main className="boot-screen">
         <div className="boot-content">
@@ -94,7 +100,7 @@ export default function App() {
     )
   }
 
-  if (!session) {
+  if (!session || !isAdmin) {
     return (
       <Login
         language={language}
@@ -114,6 +120,7 @@ export default function App() {
           <Overview
             devices={devices}
             logs={logs}
+            clientStats={clientStats}
             language={language}
             t={t}
             loading={dataLoading}
@@ -127,6 +134,15 @@ export default function App() {
             devices={devices}
             language={language}
             t={t}
+            loading={dataLoading}
+            onRefresh={() => void refresh()}
+          />
+        )
+
+      case 'clients':
+        return (
+          <Clients
+            devices={devices}
             loading={dataLoading}
             onRefresh={() => void refresh()}
           />

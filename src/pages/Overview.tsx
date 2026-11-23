@@ -5,6 +5,10 @@ import {
   Bird,
   Cpu,
   Wifi,
+  Users,
+  UserCheck,
+  UserX,
+  Link2,
 } from 'lucide-react'
 
 import Stat from '../components/Stat'
@@ -13,6 +17,7 @@ import Empty from '../components/Empty'
 import DeviceRow from '../components/DeviceRow'
 
 import type { Device, Language, Log, Translate } from '../types'
+import type { ClientStats } from '../hooks/useDashboardData'
 import { alive } from '../utils/deviceHelpers'
 
 type StatsPreset = '7d' | '30d' | 'all' | 'custom'
@@ -20,6 +25,7 @@ type StatsPreset = '7d' | '30d' | 'all' | 'custom'
 type Props = {
   devices: Device[]
   logs: Log[]
+  clientStats: ClientStats
   language: Language
   t: Translate
   loading: boolean
@@ -64,6 +70,7 @@ function parseLocalDate(value: string) {
 export default function Overview({
   devices,
   logs,
+  clientStats,
   language,
   t,
   loading,
@@ -283,6 +290,42 @@ export default function Overview({
           value={offlineDevices}
           note={t('deviceActivity')}
           tone="red"
+        />
+      </div>
+
+      {/* CLIENT SUMMARY */}
+
+      <div className="stats-grid">
+        <Stat
+          icon={Users}
+          label="Registered Clients"
+          value={clientStats.registeredClients}
+          note="Total client accounts"
+          tone="green"
+        />
+
+        <Stat
+          icon={UserCheck}
+          label="Clients with Devices"
+          value={clientStats.clientsWithDevices}
+          note="Clients with at least one device"
+          tone="green"
+        />
+
+        <Stat
+          icon={UserX}
+          label="Clients without Devices"
+          value={clientStats.clientsWithoutDevices}
+          note="Clients without an assigned device"
+          tone="gold"
+        />
+
+        <Stat
+          icon={Link2}
+          label="Active Assignments"
+          value={clientStats.activeAssignments}
+          note="Currently assigned devices"
+          tone="gold"
         />
       </div>
 

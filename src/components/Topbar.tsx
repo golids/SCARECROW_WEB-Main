@@ -23,8 +23,9 @@ type Props = {
 }
 
 const pageTitles: Record<Page, string> = {
-  overview: 'overview',
+  overview: 'Overview',
   devices: 'registeredTitle',
+  clients: 'Client Management',
   detections: 'history',
   alerts: 'alertsTitle',
   settings: 'systemSettings',

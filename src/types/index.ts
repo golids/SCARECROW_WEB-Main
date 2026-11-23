@@ -25,6 +25,7 @@ export type Log = {
 export type Page =
   | 'overview'
   | 'devices'
+  | 'clients'
   | 'detections'
   | 'alerts'
   | 'settings'

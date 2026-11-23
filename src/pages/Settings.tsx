@@ -43,23 +43,14 @@ const preferenceItems = [
     description: 'Receive notifications when a device reports an error.',
   },
   {
-    key: 'low_battery',
-    label: 'lowBattery',
-    description: 'Receive notifications when a device battery is low.',
-  },
-  {
     key: 'device_recovery',
-    label: 'recovery',
-    description: 'Receive notifications when a device reconnects.',
-  },
-  {
-    key: 'bird_detection',
-    label: 'birdDetection',
-    description: 'Receive notifications when birds are detected.',
+    label: 'reconnection',
+    description:
+      'Receive notifications when a disconnected device reconnects and comes back online.',
   },
 ] as const
 
-type PreferenceKey = keyof NotificationPreferences
+type PreferenceKey = (typeof preferenceItems)[number]['key']
 
 export default function Settings({
   session,

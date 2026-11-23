@@ -27,3 +27,41 @@ A separate React + Vite + TypeScript web dashboard for the existing SCARECROW Su
 - The app assumes the existing database has the `devices`, `detection_logs`, and `notification_preferences` tables and the policies needed for authenticated reads and preference upserts.
 - Enable Supabase Realtime for `devices` and `detection_logs` if it is not already enabled.
 - Do not expose secrets. Frontend variables are public at build time; the anon/publishable key must rely on correctly configured Row Level Security.
+
+
+## NOTE FOR ADDING ANOTHER ADMIN ACCOUNT
+
+- Go to SUPABASE PROJECT > AUTHENTICATION > ADD USER > ENTER ADMIN EMAIL AND PASS > SELECT ENTER OR FINISH
+
+- Go to SQL EDITOR then run this query and make sure you copy the UUID of the new admin added that is found in AUTHENTICATION page:
+
+- SQL QUERY FOR NEW ADMIN SUPERUSER PRIVILEGE:
+
+INSERT INTO public.admin_users (user_id)
+VALUES ('NEW-ADMIN-UUID-HERE')
+ON CONFLICT (user_id) DO NOTHING;
+
+- and then run this query for VERIFYING THE REGISTERED NEW ADMIN WITH SUPERUSER PRIVILEGE:
+
+SELECT
+    au.user_id,
+    u.email,
+    au.created_at,
+    'ADMIN' AS account_role
+FROM public.admin_users au
+JOIN auth.users u
+    ON u.id = au.user_id
+ORDER BY au.created_at;
+
+- optional , if you want a display name for new admin run this query:
+
+SELECT
+    u.id,
+    u.email,
+    u.raw_user_meta_data->>'display_name' AS display_name,
+    p.full_name AS profile_name
+FROM auth.users u
+LEFT JOIN public.profiles p
+    ON p.id = u.id
+WHERE u.id = 'YOUR-NEW-ADMIN-UUID';
+ 
