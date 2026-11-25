@@ -251,3 +251,395 @@
 .registered-device-content .device-icon {
   flex-shrink: 0;
 }
+
+/* =====================================
+   DEVICE MODAL OVERLAY
+===================================== */
+
+.device-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(3px);
+  overflow-y: auto;
+}
+
+/* =====================================
+   DEVICE MODAL CONTAINER
+===================================== */
+
+.device-modal {
+  width: 100%;
+  max-width: 480px;
+  max-height: calc(100dvh - 40px);
+  overflow-y: auto;
+  box-sizing: border-box;
+
+  padding: 26px;
+  background: #ffffff;
+  border: 1px solid #e3e9df;
+  border-radius: 16px;
+
+  color: #183526;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+
+  animation: deviceModalEnter 0.2s ease-out;
+}
+
+@keyframes deviceModalEnter {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* =====================================
+   MODAL HEADER
+===================================== */
+
+.device-modal-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 15px;
+  margin-bottom: 24px;
+}
+
+.device-modal h2 {
+  margin: 0 0 6px;
+  color: #123b25;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.device-modal-header p {
+  margin: 0;
+  color: #808080;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.device-modal-close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+
+  width: 32px;
+  height: 32px;
+  padding: 0;
+
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  color: #808080;
+  cursor: pointer;
+}
+
+.device-modal-close:hover {
+  background: #f1f5ee;
+  color: #123b25;
+}
+
+/* =====================================
+   FORM FIELDS
+===================================== */
+
+.device-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+  margin-bottom: 17px;
+}
+
+.device-form-group label {
+  color: #34523b;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.device-form-group input,
+.device-form-group select {
+  width: 100%;
+  min-height: 43px;
+  box-sizing: border-box;
+
+  padding: 11px 13px;
+  border: 1px solid #e3e9df;
+  border-radius: 9px;
+
+  background: #ffffff;
+  color: #183526;
+  font-family: inherit;
+  font-size: 13px;
+
+  outline: none;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.device-form-group input::placeholder {
+  color: #9aa49a;
+}
+
+.device-form-group input:focus,
+.device-form-group select:focus {
+  border-color: #80a86c;
+  box-shadow: 0 0 0 3px rgba(128, 168, 108, 0.12);
+}
+
+.device-form-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 15px;
+}
+
+/* =====================================
+   MODAL ACTION BUTTONS
+===================================== */
+
+.device-modal-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+
+  margin-top: 10px;
+  padding-top: 18px;
+  border-top: 1px solid #e3e9df;
+}
+
+.device-cancel-btn,
+.device-save-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  min-height: 40px;
+  padding: 10px 20px;
+
+  border: 1px solid transparent;
+  border-radius: 9px;
+
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+
+  transition: background 0.2s ease;
+}
+
+.device-cancel-btn {
+  background: #ffffff;
+  border-color: #e3e9df;
+  color: #647467;
+}
+
+.device-cancel-btn:hover {
+  background: #f5f7f2;
+}
+
+.device-save-btn {
+  background: #4f8f3a;
+  color: #ffffff;
+}
+
+.device-save-btn:hover {
+  background: #407830;
+}
+
+.device-save-btn:disabled,
+.device-cancel-btn:disabled,
+.device-modal-close:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* =====================================
+   ADMINISTRATOR PASSWORD MODAL
+===================================== */
+
+.password-modal {
+  max-width: 420px;
+}
+
+.password-heading-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 48px;
+  height: 48px;
+
+  border-radius: 12px;
+  background: #edf5e8;
+  color: #4f8f3a;
+}
+
+.password-modal-description {
+  margin: 8px 0 24px;
+  color: #808080;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+/* =====================================
+   SUCCESS AND ERROR MESSAGES
+===================================== */
+
+.device-error-message,
+.device-success-message {
+  padding: 12px 14px;
+  margin-bottom: 15px;
+
+  border-radius: 8px;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.device-error-message {
+  background: #fdecea;
+  border: 1px solid #f4cccc;
+  color: #c62828;
+}
+
+.device-success-message {
+  background: #edf5e8;
+  border: 1px solid #d5e6ce;
+  color: #285c31;
+}
+
+/* =====================================
+   LOADING SPINNER
+===================================== */
+
+.device-spinner {
+  animation: deviceSpin 0.8s linear infinite;
+}
+
+@keyframes deviceSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* =====================================
+   DEVICE MODAL DARK MODE
+===================================== */
+
+:root[data-theme='dark'] .device-modal {
+  background: #1b2b21;
+  border-color: #3a5040;
+  color: #edf4e9;
+}
+
+:root[data-theme='dark'] .device-modal h2 {
+  color: #edf4e9;
+}
+
+:root[data-theme='dark'] .device-modal-header p,
+:root[data-theme='dark'] .password-modal-description {
+  color: #91a394;
+}
+
+:root[data-theme='dark'] .device-form-group label {
+  color: #c5d5c5;
+}
+
+:root[data-theme='dark'] .device-form-group input,
+:root[data-theme='dark'] .device-form-group select {
+  background: #142219;
+  border-color: #3a5040;
+  color: #edf4e9;
+  color-scheme: dark;
+}
+
+:root[data-theme='dark'] .device-form-group input:focus,
+:root[data-theme='dark'] .device-form-group select:focus {
+  border-color: #668b68;
+}
+
+:root[data-theme='dark'] .device-modal-close {
+  color: #b8c9ba;
+}
+
+:root[data-theme='dark'] .device-modal-close:hover {
+  background: #293e30;
+  color: #ffffff;
+}
+
+:root[data-theme='dark'] .device-modal-actions {
+  border-color: #3a5040;
+}
+
+:root[data-theme='dark'] .device-cancel-btn {
+  background: #24372a;
+  border-color: #3a5040;
+  color: #c5d5c5;
+}
+
+:root[data-theme='dark'] .device-cancel-btn:hover {
+  background: #304737;
+}
+
+:root[data-theme='dark'] .device-save-btn {
+  background: #4f8f3a;
+  color: #ffffff;
+}
+
+:root[data-theme='dark'] .password-heading-icon {
+  background: #293e30;
+  color: #c5dda9;
+}
+
+:root[data-theme='dark'] .device-error-message {
+  background: #3b2424;
+  border-color: #654040;
+  color: #f4a5a5;
+}
+
+:root[data-theme='dark'] .device-success-message {
+  background: #243b2b;
+  border-color: #3a5040;
+  color: #b9dba9;
+}
+
+/* =====================================
+   RESPONSIVE MODAL
+===================================== */
+
+@media (max-width: 500px) {
+  .device-modal-overlay {
+    padding: 14px;
+  }
+
+  .device-modal {
+    padding: 20px;
+    max-height: calc(100dvh - 28px);
+  }
+
+  .device-form-row {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .device-modal-actions > button {
+    flex: 1;
+  }
+}
